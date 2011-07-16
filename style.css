@@ -6,3 +6,7 @@
     border-radius : 10px;
     /*background-color: __background_alt__;*/
 }
+
+_div.toc {
+    visibility: hidden;
+}
