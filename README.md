@@ -3,12 +3,13 @@ This plugin renders the toc of a page inside the page content, a la Mediawiki.
 # Sample
     {{INLINETOC}}
     
-Result image:
+Result:
 
 ![Sample](https://github.com/downloads/Andreone/dokuwiki_inlinetoc/inlinetoc_sample.png)
 
 # Note
-The plugin replaces the tag with a div. The div's class is inlinetoc**2** (the css is in inlinetoc/style.css file). The 2 is here to not enter in conflict with the TOC plugin which already use the class inlinetoc.
+The plugin replaces the tag with a div. The div's class is inlinetoc**2** (the css is in inlinetoc/all.css file). 
+The 2 is here to not enter in conflict with the TOC plugin which already use the class inlinetoc.
 
 The plugin won't work if you specify _{{NOTOC}}_ on the page because it relies on dokuwiki's internal toc processor to build the page's toc. 
 

@@ -18,7 +18,10 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
      */
     function register(&$controller) {
         $controller->register_hook('RENDERER_CONTENT_POSTPROCESS', 'AFTER', $this, 'handle_renderer_content_postprocess', array());
+        $controller->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', $this, 'handle_tpl_metaheader_output', array());
     }
+   
+
 
     /**
      * Replace our placeholder with the toc content
@@ -26,9 +29,32 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
     function handle_renderer_content_postprocess(&$event, $param) {
         global $TOC;
         if ($TOC) {
+            $js = '<script type="text/javascript">hideDokuwikiToc();</script>';
+            $html = '<div id="inlinetoc2" class="inlinetoc2">' . html_buildlist($TOC, 'inlinetoc2', 'html_list_inlinetoc2') . '</div>';
             $event->data[1] = str_replace('<!-- INLINETOCPLACEHOLDER -->',
-                                          '<div class="inlinetoc2">' . html_buildlist($TOC, 'toc', 'html_list_toc') . '</div>',
+                                          $html . $js,
                                           $event->data[1]);
         }
     }
+   
+    function handle_tpl_metaheader_output(&$event, $param) {
+        $event->data["script"][] = array (
+          "type" => "text/javascript",
+          "src" => DOKU_BASE . "lib/plugins/inlinetoc/inlinetoc.js",
+          "_data" => "",
+        );
+    }
+}
+
+/**
+* Callback for html_buildlist
+*/
+function html_list_inlinetoc2($item){
+    if(isset($item['hid'])){
+        $link = '#'.$item['hid'];
+    }else{
+        $link = $item['link'];
+    }
+
+    return '<span class="li"><a href="'.$link.'" class="inlinetoc2">'. hsc($item['title']).'</a></span>';
 }
