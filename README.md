@@ -5,7 +5,7 @@ This plugin renders the toc of a page inside the page content, a la Mediawiki.
     
 Result:
 
-![Sample](https://github.com/downloads/Andreone/dokuwiki_inlinetoc/inlinetoc_sample.png)
+![Sample](https://github.com/downloads/Andreone/dokuwiki_inlinetoc/sample.png)
 
 # Note
 The plugin replaces the tag with a div. The div's class is inlinetoc**2** (the css is in inlinetoc/all.css file). 
