@@ -21,22 +21,22 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
         $controller->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', $this, 'handle_tpl_metaheader_output', array());
     }
    
-
-
     /**
-     * Replace our placeholder with the toc content
+     * Replace our placeholder with the actual toc content
      */
     function handle_renderer_content_postprocess(&$event, $param) {
         global $TOC;
         if ($TOC) {
-            $js = '<script type="text/javascript">hideDokuwikiToc();</script>';
             $html = '<div id="inlinetoc2" class="inlinetoc2">' . html_buildlist($TOC, 'inlinetoc2', 'html_list_inlinetoc2') . '</div>';
             $event->data[1] = str_replace('<!-- INLINETOCPLACEHOLDER -->',
-                                          $html . $js,
+                                          $html,
                                           $event->data[1]);
         }
     }
    
+    /**
+     * Include javascript
+     */
     function handle_tpl_metaheader_output(&$event, $param) {
         $event->data["script"][] = array (
           "type" => "text/javascript",
@@ -47,8 +47,9 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
 }
 
 /**
-* Callback for html_buildlist
-*/
+ * Callback for html_buildlist.
+ * Builds list items with inlinetoc2 printable class instead of dokuwiki's toc class which isn't printable.
+ */
 function html_list_inlinetoc2($item){
     if(isset($item['hid'])){
         $link = '#'.$item['hid'];

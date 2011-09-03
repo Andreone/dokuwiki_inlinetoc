@@ -1,3 +1,4 @@
+
 function hideDokuwikiToc() {
     if(document.getElementById('inlinetoc2')) {
         var elements = document.getElementsByTagName('div');
@@ -9,3 +10,5 @@ function hideDokuwikiToc() {
         }
     }
 }
+
+addInitEvent(hideDokuwikiToc);
