@@ -1,7 +1,7 @@
 base   inlinetoc
 author Nicolas FAUVET
-email  nfauvet@free.fr
-date   2011-08-10
+email  nfauvet15@gmail.com
+date   2013-07-27
 name   inlinetoc
 desc   Renders the toc of a page inside the page content, a la Mediawiki
 url    http://www.dokuwiki.org/plugin:inlinetoc
