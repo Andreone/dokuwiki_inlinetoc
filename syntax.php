@@ -21,6 +21,13 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
     }
 
     /**
+     * What kind of type are we?
+     */
+	function getPType() {
+		return 'block';
+	}
+
+    /**
      * Where to sort in? (took the same as for ~~NOTOC~~)
      */
     function getSort() {
