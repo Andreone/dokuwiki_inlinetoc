@@ -26,6 +26,13 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
     function getSort() {
         return 30;
     }
+    
+    /**
+     * What kind of type are we?
+     */
+    function getPType() {
+            return 'block';
+    }
 
     /**
      * Connect pattern to lexer
