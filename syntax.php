@@ -45,6 +45,12 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
      * Add placeholder to cached page (will be replaced by action component)
      */
     function render($mode, &$renderer, $data) {
+    	
+    	if ($mode == 'metadata') {
+			$renderer->meta['movetoc'] = true;
+			return true;
+		}
+    
         $renderer->doc .= '<!-- INLINETOCPLACEHOLDER -->';
     }
 }
