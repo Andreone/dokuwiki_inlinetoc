@@ -26,6 +26,13 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
     function getSort() {
         return 30;
     }
+    
+    /**
+     * What kind of type are we?
+     */
+    function getPType() {
+            return 'block';
+    }
 
     /**
      * Connect pattern to lexer
@@ -45,6 +52,12 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
      * Add placeholder to cached page (will be replaced by action component)
      */
     function render($mode, &$renderer, $data) {
+    	
+    	if ($mode == 'metadata') {
+			$renderer->meta['movetoc'] = true;
+			return true;
+		}
+    
         $renderer->doc .= '<!-- INLINETOCPLACEHOLDER -->';
     }
 }
