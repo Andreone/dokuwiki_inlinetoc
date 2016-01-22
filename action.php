@@ -16,7 +16,7 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
     /**
      * Register event handlers
      */
-    function register(&$controller) {
+    function register(Doku_Event_Handler $controller) {
         $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, 'handle_act_render', array());
         $controller->register_hook('RENDERER_CONTENT_POSTPROCESS', 'AFTER', $this, 'handle_renderer_content_postprocess', array());
     }
