@@ -1,3 +1,7 @@
+# This plugin is not maintained anymore
+
+---
+
 This plugin renders the toc of a page inside the page content, a la Mediawiki.
 
 Sample
