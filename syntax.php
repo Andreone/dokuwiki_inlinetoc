@@ -6,11 +6,11 @@
  * @author  Andreone
  */
 
-if (!defined('DOKU_INC')) define('DOKU_INC', realpath(dirname(__FILE__) . '/../../') . '/');
-require_once(DOKU_INC . 'inc/init.php');
-if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
-require_once(DOKU_PLUGIN . 'syntax.php');
+if(!defined('DOKU_INC')) die();
 
+/**
+ * Class renders inlinetoc syntax
+ */
 class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
 
     /**
@@ -26,16 +26,18 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
     function getSort() {
         return 30;
     }
-    
+
     /**
      * What kind of type are we?
      */
     function getPType() {
-            return 'block';
+        return 'block';
     }
 
     /**
      * Connect pattern to lexer
+     *
+     * @param string $mode
      */
     function connectTo($mode) {
         $this->Lexer->addSpecialPattern('{{INLINETOC}}', $mode, 'plugin_inlinetoc');
@@ -43,17 +45,29 @@ class syntax_plugin_inlinetoc extends DokuWiki_Syntax_Plugin {
 
     /**
      * Handle the match
+     *
+     * @param string $match
+     * @param int $state
+     * @param int $pos
+     * @param Doku_Handler $handler
+     * @return array|bool|string
      */
-    function handle($match, $state, $pos, &$handler) {
+    function handle($match, $state, $pos, Doku_Handler $handler) {
         return '';
     }
 
     /**
      * Add placeholder to cached page (will be replaced by action component)
+     *
+     * @param string $mode
+     * @param Doku_Renderer $renderer
+     * @param array $data
+     * @return bool
      */
-    function render($mode, &$renderer, $data) {
-    	
+    function render($mode, Doku_Renderer $renderer, $data) {
+
     	if ($mode == 'metadata') {
+    	    /** @var Doku_Renderer_metadata $renderer */
 			$renderer->meta['movetoc'] = true;
 			return true;
 		}
