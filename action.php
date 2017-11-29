@@ -27,6 +27,8 @@ class action_plugin_inlinetoc extends DokuWiki_Action_Plugin {
     function handle_act_render(&$event, $param) {
         global $ID;
         global $INFO;
+        if (in_array($event->data, array('show', 'preview')) == false) return;
+
         if (p_get_metadata($ID, 'movetoc')) {
             $INFO['prependTOC'] = false;
         }
